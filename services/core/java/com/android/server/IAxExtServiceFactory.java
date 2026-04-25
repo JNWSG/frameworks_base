@@ -18,10 +18,10 @@ package com.android.server;
 import com.android.server.am.*;
 
 public interface IAxExtServiceFactory {
-    enum ExtType {
+    class ExtType {
         private final Class<?> clazz;
 
-        ExtType(Class<?> clazz) {
+        public ExtType(Class<?> clazz) {
             this.clazz = clazz;
         }
 
