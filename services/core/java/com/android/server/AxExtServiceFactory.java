@@ -59,13 +59,7 @@ public class AxExtServiceFactory {
 
     @SuppressWarnings("unchecked")
     public static <T> T getOrCreate(IAxExtServiceFactory.ExtType type) {
-        Object instance;
-        switch (type) {
-            default:
-                throw new IllegalArgumentException("Unknown ExtType: " + type);
-        }
-
-        return (T) type.getClazz().cast(instance);
+        throw new IllegalArgumentException("Unknown ExtType: " + type);
     }
 
     public static void systemReady() {
