@@ -10017,7 +10017,7 @@ public final class Settings {
          * Whether to show the charging info on the lockscreen while charging
          * @hide
          */
-        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_charging_info";
+        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
         /**
          * Whether to show the detailed charging info on the lockscreen while charging
