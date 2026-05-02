@@ -18,7 +18,6 @@ package com.android.systemui.doze
 
 import android.content.Context
 import android.hardware.display.DisplayManager
-import android.media.AudioManager
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemProperties
@@ -26,7 +25,6 @@ import android.util.Log
 import android.view.Display
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Main
-import com.android.systemui.media.MediaSessionManager
 import com.android.systemui.settings.DisplayTracker
 import com.android.systemui.statusbar.phone.UnlockedScreenOffAnimationControllerExt
 import com.android.systemui.statusbar.phone.ScreenOffAnimationCallback
@@ -58,10 +56,6 @@ class DozeScreenStateEx @Inject constructor(
     private var unlockAnimPlaying: Boolean = false
     private var curState: DozeMachine.State = DozeMachine.State.UNINITIALIZED
     private var screenStateConsumer: Consumer<Int>? = null
-    private var mutedForDoze: Boolean = false
-    private var savedVolume: Int = -1
-    private val audioManager: AudioManager =
-        context.getSystemService(AudioManager::class.java)
 
     private val screenOffAnimationCallback = object : ScreenOffAnimationCallback() {
         override fun onAnimationStart() {
@@ -114,26 +108,9 @@ class DozeScreenStateEx @Inject constructor(
             }
             DozeMachine.State.FINISH -> {
                 UnlockedScreenOffAnimationControllerExt.removeCallback(screenOffAnimationCallback)
-                muteMediaStream(false)
                 screenStateConsumer = null
             }
             else -> {}
-        }
-    }
-
-    fun muteMediaStream(mute: Boolean) {
-        if (mute && !mutedForDoze) {
-            if (!MediaSessionManager.get().isMediaPlaying) {
-                savedVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0)
-                mutedForDoze = true
-            }
-        } else if (!mute && mutedForDoze) {
-            if (savedVolume >= 0) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, savedVolume, 0)
-                savedVolume = -1
-            }
-            mutedForDoze = false
         }
     }
 }

@@ -258,9 +258,6 @@ public class DozeScreenState implements DozeMachine.Part {
                         "screen_off_aod_duration", ENTER_DOZE_DELAY,
                         android.os.UserHandle.USER_CURRENT);
                 long delay = showAodOnScreenOff ? aodDuration : animationDelay;
-                if (showAodOnScreenOff) {
-                    mDozeScreenStateEx.muteMediaStream(true);
-                }
                 mHandler.postDelayed(mApplyPendingScreenState, delay);
             } else if (mIsLandscapeScreenOff) {
                 mDozeService.setDozeScreenState(Display.STATE_OFF);
@@ -289,9 +286,6 @@ public class DozeScreenState implements DozeMachine.Part {
 
         applyScreenState(mPendingScreenState);
         mPendingScreenState = Display.STATE_UNKNOWN;
-        mHandler.postDelayed(() -> {
-            mDozeScreenStateEx.muteMediaStream(false);
-        }, 250);
     }
 
     private void applyScreenState(int screenState) {
