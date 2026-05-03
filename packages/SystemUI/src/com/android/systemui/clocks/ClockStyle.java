@@ -94,12 +94,29 @@ public class ClockStyle extends RelativeLayout implements TunerService.Tunable {
             R.layout.keyguard_anci_clockdate_sternum, // 42
             R.layout.keyguard_sparkCircle, // 43
             R.layout.keyguard_sparkList, // 44
+            R.layout.keyguard_clock_miui2, // 45
+            R.layout.keyguard_clock_ios2, // 46
+            R.layout.keyguard_clock_ios3, // 47
+            R.layout.keyguard_clock_ios4, // 48
+            R.layout.keyguard_clock_ios5, // 49
+            R.layout.keyguard_clock_ios6, // 50
+            R.layout.keyguard_clock_ios7, // 51
+            R.layout.keyguard_clock_ios8, // 52
+            R.layout.keyguard_clock_ios9, // 53
+            R.layout.keyguard_clock_ios10, // 54
+            R.layout.keyguard_clock_big1, // 55
+            R.layout.keyguard_clock_big2, // 56
+            R.layout.keyguard_clock_big3, // 57
+            R.layout.keyguard_clock_sweet, // 58
+            R.layout.keyguard_clock_pixel, // 59
+            R.layout.keyguard_clock_samurai, // 60
+            R.layout.keyguard_clock_gateway, // 61
     };
 
     private final static int[] mCenterClocks = {2, 3, 5, 6, 7, 9, 10, 11, 12, 13,
         14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26 , 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43};
 
-    private static final int[] mNoColorClocks = {1, 2, 25, 26};
+    private static final int[] mNoColorClocks = {1, 2, 25, 26, 45};
 
     public static final String CLOCK_STYLE_KEY = Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_STYLE;
     public static final String CLOCK_COLOR_MODE_KEY = Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_COLOR_MODE;
